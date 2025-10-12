@@ -1,8 +1,6 @@
---Uszereguj pracowników według pensji i premii malejąco. 
-SELECT 
-    p.imie, p.nazwisko,(pe.kwota + pr.kwota) AS laczne_wynagrodzenie
-FROM ksiegowosc.pracownicy p
-JOIN ksiegowosc.wynagrodzenia w ON p.id_pracownika = w.id_pracownika
-JOIN ksiegowosc.pensja pe ON w.id_pensji = pe.id_pensji
-JOIN ksiegowosc.premia pr ON w.id_premii = pr.id_premii
-ORDER BY laczne_wynagrodzenie DESC;
+  --Uszereguj pracowników według pensji
+SELECT imie, nazwisko, ksiegowosc.pensja.kwota as pensja
+FROM ksiegowosc.pracownicy
+JOIN ksiegowosc.wynagrodzenia ON ksiegowosc.pracownicy.id_pracownika = ksiegowosc.wynagrodzenia.id_pracownika
+JOIN ksiegowosc.pensja ON ksiegowosc.wynagrodzenia.id_pensji = ksiegowosc.pensja.id_pensji
+ORDER BY ksiegowosc.pensja.kwota;
